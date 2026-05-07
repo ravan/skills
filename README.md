@@ -6,6 +6,14 @@ The repository follows the Agent Skills standard: each skill is a directory with
 a `SKILL.md` file containing `name` and `description` frontmatter plus Markdown
 instructions.
 
+## Quickstart (30-second setup)
+
+1. Run the skills.sh installer:
+
+```bash
+npx skills@latest add ravan/skills
+```
+
 ## Layout
 
 ```text
