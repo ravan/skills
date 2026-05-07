@@ -644,12 +644,22 @@ async function gatherMentioningMemberSearch(auth, args, fetchPage = fetchLinkedI
       candidate.matches,
     );
     if (!detailRecords.candidates.length) {
+      if (!detailRecords.skipped_candidates.length) {
+        records.candidates.push({
+          ...candidate,
+          source: url,
+          source_type: 'linkedin_http_search_mentions_member',
+          resolved_member: resolved,
+          evidence: 'Search result candidate retained because the activity detail page did not expose parseable LinkedIn SSR activity records over HTTP.',
+        });
+        continue;
+      }
       records.skipped_candidates.push({
         source: url,
         source_type: 'linkedin_http_search_mentions_member',
         url: candidate.url,
         matches: candidate.matches,
-        skip_reason: detailRecords.skipped_candidates[0]?.skip_reason || 'activity detail fetch did not produce a usable candidate',
+        skip_reason: detailRecords.skipped_candidates[0].skip_reason,
         resolved_member: resolved,
       });
       continue;

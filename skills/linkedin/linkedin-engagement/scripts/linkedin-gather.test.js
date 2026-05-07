@@ -242,6 +242,47 @@ test('gatherMentioningMemberSearch carries member mention evidence into detail h
   assert.match(records.candidates[0].excerpt, /open infrastructure matters/);
 });
 
+test('gatherMentioningMemberSearch keeps search candidate when detail hydration has no parseable activity record', async () => {
+  const resolved = {
+    id: 'ACoAAABnFdkBR6sltc2NCKYNvDYNRUrfixk5XD8',
+    source: 'profile',
+    url: 'https://www.linkedin.com/in/ffeldmann/',
+  };
+  const searchUrl = buildSearchUrl({
+    mentioningMember: resolved.id,
+    period: 'last 7 days',
+    sortBy: 'date_posted',
+  });
+  const activityUrl = 'https://www.linkedin.com/feed/update/urn:li:activity:7457938486814248961/';
+  const pages = new Map([
+    [searchUrl, `
+      {"text":"Nils Brauckmann"}
+      {"text":"1d"}
+      {"text":"An open infrastructure discussion with Frank Feldmann and other SUSE colleagues."}
+      {"navigationUrl":"${activityUrl}"}
+      urn:li:activity:7457938486814248961
+    `],
+    [activityUrl, `
+      <html><body>LinkedIn rendered this activity without parseable activity SSR records.</body></html>
+    `],
+  ]);
+
+  const records = await gatherMentioningMemberSearch({}, {
+    mentioningMember: 'ffeldmann',
+    target: ['Frank Feldmann'],
+    includeSuse: false,
+    period: 'last 7 days',
+    viewerName: 'Ravan Naidoo',
+  }, async (url) => ({ html: pages.get(url) || '' }), async () => resolved);
+
+  assert.equal(records.candidates.length, 1);
+  assert.equal(records.skipped_candidates.length, 0);
+  assert.equal(records.candidates[0].url, activityUrl);
+  assert.deepEqual(records.candidates[0].matches, ['ffeldmann', resolved.id, 'Frank Feldmann']);
+  assert.match(records.candidates[0].excerpt, /open infrastructure discussion/);
+  assert.match(records.candidates[0].evidence, /Search result candidate retained/);
+});
+
 test('gatherSearch applies quality filters after detail hydration, not on noisy search cards', async () => {
   const searchUrl = buildSearchUrl({ term: 'SUSE', period: 'last 7 days' });
   const activityUrl = 'https://www.linkedin.com/feed/update/urn:li:activity:7457659485629640704/';
