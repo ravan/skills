@@ -11,8 +11,8 @@ standard.
 - Do not create `CLAUDE.md` unless the user explicitly requests it.
 - Treat `.claude-plugin/plugin.json` and `.agents/plugins/marketplace.json` as
   generated runtime adapters.
-- Keep stable skills under `skills/engineering`, `skills/productivity`, or
-  `skills/misc`.
+- Keep stable skills under `skills/engineering`, `skills/productivity`,
+  `skills/linkedin`, or `skills/misc`.
 - Do not include `skills/personal`, `skills/in-progress`, or
   `skills/deprecated` in generated public manifests.
 - Every skill directory must contain `SKILL.md`.

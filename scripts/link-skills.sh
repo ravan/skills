@@ -25,7 +25,7 @@ fi
 
 mkdir -p "$DEST"
 
-find "$REPO/skills/engineering" "$REPO/skills/productivity" "$REPO/skills/misc" \
+find "$REPO/skills/engineering" "$REPO/skills/productivity" "$REPO/skills/linkedin" "$REPO/skills/misc" \
   -name SKILL.md -not -path '*/node_modules/*' -print0 2>/dev/null |
 while IFS= read -r -d '' skill_md; do
   src="$(dirname "$skill_md")"

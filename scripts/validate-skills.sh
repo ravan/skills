@@ -2,7 +2,7 @@
 set -euo pipefail
 
 REPO="$(cd "$(dirname "$0")/.." && pwd)"
-STABLE_BUCKET_PATTERN='^skills/(engineering|productivity|misc)/[^/]+/SKILL\.md$'
+STABLE_BUCKET_PATTERN='^skills/(engineering|productivity|linkedin|misc)/[^/]+/SKILL\.md$'
 PRIVATE_BUCKET_PATTERN='^skills/(personal|in-progress|deprecated)/[^/]+/SKILL\.md$'
 NAME_PATTERN='^[a-z0-9]+(-[a-z0-9]+)*$'
 
@@ -64,6 +64,7 @@ done
 for path in \
   skills/engineering/README.md \
   skills/productivity/README.md \
+  skills/linkedin/README.md \
   skills/misc/README.md \
   skills/personal/README.md \
   skills/in-progress/README.md \

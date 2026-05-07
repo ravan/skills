@@ -28,6 +28,7 @@ skills/
 └── skills/
     ├── engineering/
     ├── productivity/
+    ├── linkedin/
     ├── misc/
     ├── personal/
     ├── in-progress/
@@ -40,6 +41,7 @@ Stable skills live in:
 
 - `skills/engineering`
 - `skills/productivity`
+- `skills/linkedin`
 - `skills/misc`
 
 These buckets are included in generated manifests.

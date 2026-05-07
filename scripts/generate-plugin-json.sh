@@ -2,7 +2,7 @@
 set -euo pipefail
 
 REPO="$(cd "$(dirname "$0")/.." && pwd)"
-STABLE_BUCKETS=("engineering" "productivity" "misc")
+STABLE_BUCKETS=("engineering" "productivity" "linkedin" "misc")
 PLUGIN_NAME="ravan-skills"
 
 cd "$REPO"

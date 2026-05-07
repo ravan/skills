@@ -1,6 +1,7 @@
 {
   "name": "ravan-skills",
   "skills": [
-    "./skills/productivity/example-skill"
+    "./skills/linkedin/linkedin-engagement",
+    "./skills/linkedin/linkedin-login"
   ]
 }
