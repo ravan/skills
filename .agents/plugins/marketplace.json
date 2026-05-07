@@ -1,0 +1,9 @@
+{
+  "name": "ravan-skills",
+  "description": "Portable Agent Skills by Ravan.",
+  "skills": [
+    {
+      "path": "./skills/productivity/example-skill"
+    }
+  ]
+}

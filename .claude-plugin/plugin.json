@@ -1,0 +1,6 @@
+{
+  "name": "ravan-skills",
+  "skills": [
+    "./skills/productivity/example-skill"
+  ]
+}
